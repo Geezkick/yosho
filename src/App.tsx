@@ -7,6 +7,8 @@ import SearchOverlay from './components/SearchOverlay'
 import HomePage from './pages/HomePage'
 import ShopPage from './pages/ShopPage'
 import AboutPage from './pages/AboutPage'
+import Footer from './components/Footer'
+import LoginOverlay from './components/LoginOverlay'
 import './index.css'
 
 function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -16,9 +18,11 @@ function SiteLayout({ children }: { children: React.ReactNode }) {
       <Navigation />
       <CartDrawer />
       <SearchOverlay />
+      <LoginOverlay />
       <main>
         {children}
       </main>
+      <Footer />
     </div>
   )
 }

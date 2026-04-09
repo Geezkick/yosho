@@ -1,50 +1,64 @@
 import { motion } from 'framer-motion'
 import { useStore } from '../context/StoreContext'
-import { ShoppingBag, Star } from 'lucide-react'
+import { ShoppingBag, Star, TrendingUp } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 
 const ShopPage = () => {
   const { products, addToCart } = useStore()
+  const [searchParams] = useSearchParams()
+  const genderFilter = searchParams.get('gender')
+
+  const filteredProducts = products.filter(p => 
+    !genderFilter || p.gender === genderFilter || p.gender === 'UNISEX'
+  )
 
   return (
     <motion.div 
       className="shop-page"
-      initial={{ y: '100%', opacity: 0 }}
+      initial={{ y: '20px', opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >
       <header className="shop-hero">
         <div className="shop-hero-content">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="shop-eyebrow"
-          >
-            Performance Reinvented
-          </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, y: 30, letterSpacing: '0.2em' }}
-            animate={{ opacity: 1, y: 0, letterSpacing: '0em' }}
-            transition={{ delay: 0.3, duration: 1, ease: 'easeOut' }}
-          >
-            Shop the Future
-          </motion.h1>
+          <div className="shop-eyebrow">
+            {genderFilter ? `${genderFilter} COLLECTION` : 'PERFORMANCE REINVENTED'}
+          </div>
+          <h1>{genderFilter ? `THE ${genderFilter} EDIT` : 'SHOP THE FUTURE'}</h1>
         </div>
       </header>
 
       <div className="shop-container">
+        {/* Trending Section */}
+        {!genderFilter && (
+          <div className="trending-section">
+            <div className="section-header">
+              <h2><TrendingUp size={24} /> TRENDING NOW</h2>
+              <p>The most coveted drops from the YoSho collective.</p>
+            </div>
+            <div className="trending-grid">
+              {products.slice(0, 3).map(p => (
+                <div key={p.id + 'trend'} className="trend-tile glass" onClick={() => addToCart(p)}>
+                  <img src={p.image} alt={p.name} />
+                  <h5>{p.name}</h5>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="shop-controls">
-          <div className="shop-count">{products.length} Products Found</div>
+          <div className="shop-count">{filteredProducts.length} Products Found</div>
           <div className="shop-filters">
-            {['All', 'Running', 'Training', 'Lifestyle'].map(f => (
+            {['All', 'Running', 'Training', 'Lifestyle', 'Elite'].map(f => (
               <button key={f} className={`filter-chip ${f === 'All' ? 'active' : ''}`}>{f}</button>
             ))}
           </div>
         </div>
 
         <div className="product-grid">
-          {products.map((p, i) => (
+          {filteredProducts.map((p, i) => (
             <motion.div 
               key={p.id}
               className="product-card"
@@ -62,7 +76,7 @@ const ShopPage = () => {
               </div>
               <div className="pc-content">
                 <div className="pc-header">
-                  <span className="pc-cat">{p.category}</span>
+                  <span className="pc-cat">{p.category} • {p.gender}</span>
                   <div className="pc-rating"><Star size={10} fill="#6d28d9" color="#6d28d9" /> 4.9</div>
                 </div>
                 <h3 className="pc-name">{p.name}</h3>
@@ -77,6 +91,7 @@ const ShopPage = () => {
             </motion.div>
           ))}
         </div>
+
         <section className="shop-features">
           <div className="section-header">
             <h2>PRO-TECH SPECS</h2>

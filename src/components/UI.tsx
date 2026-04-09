@@ -64,7 +64,7 @@ export const Magnetic = ({ children }: { children: React.ReactElement }) => {
 
 // ─── Navigation ───────────────────────────────────────────────────────────
 export function Navigation() {
-  const { cart, setIsCartOpen, setIsSearchOpen } = useStore()
+  const { cart, setIsCartOpen, setIsSearchOpen, setIsLoginOpen } = useStore()
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0)
 
   return (
@@ -80,9 +80,9 @@ export function Navigation() {
       </Link>
 
       <ul className="nav-links-list">
-        <li><Link to="/" className="active">Home</Link></li>
-        <li><Link to="/shop">Shop All</Link></li>
-        <li><Link to="/shop">Tech</Link></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/shop?gender=MEN">Men</Link></li>
+        <li><Link to="/shop?gender=WOMEN">Women</Link></li>
         <li><Link to="/shop">Collections</Link></li>
         <li><Link to="/about">About</Link></li>
       </ul>
@@ -91,7 +91,9 @@ export function Navigation() {
         <button className="nav-icon-btn" aria-label="Search" onClick={() => setIsSearchOpen(true)}>
           <Search size={20}/>
         </button>
-        <button className="nav-icon-btn" aria-label="Account"><User size={20}/></button>
+        <button className="nav-icon-btn" aria-label="Account" onClick={() => setIsLoginOpen(true)}>
+          <User size={20}/>
+        </button>
         <button className="nav-icon-btn" aria-label="Cart" style={{position:'relative'}} onClick={() => setIsCartOpen(true)}>
           <ShoppingBag size={20}/>
           {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
