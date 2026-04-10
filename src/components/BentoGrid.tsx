@@ -54,7 +54,7 @@ export function BentoGrid() {
 
   return (
     <>
-      <section className="collections-section">
+      <section className="collections-section" id="bento">
         <motion.div 
           className="collections-header" 
           initial={{ opacity: 0, y: 30 }}
@@ -121,10 +121,10 @@ export function BentoGrid() {
         </form>
         <div className="join-social">
           <span className="join-social-lbl">Follow Us</span>
-          <button className="soc-btn" aria-label="Instagram"><InstagramIcon /></button>
-          <button className="soc-btn" aria-label="TikTok"><TikTokIcon/></button>
-          <button className="soc-btn" aria-label="YouTube"><YoutubeIcon /></button>
-          <button className="soc-btn" aria-label="X/Twitter"><XIcon/></button>
+          <button className="soc-btn" aria-label="Instagram" onClick={() => alert('Redirecting to Instagram...')}><InstagramIcon /></button>
+          <button className="soc-btn" aria-label="TikTok" onClick={() => alert('Redirecting to TikTok...')}><TikTokIcon/></button>
+          <button className="soc-btn" aria-label="YouTube" onClick={() => alert('Redirecting to YouTube...')}><YoutubeIcon /></button>
+          <button className="soc-btn" aria-label="X/Twitter" onClick={() => alert('Redirecting to X...')}><XIcon/></button>
         </div>
       </div>
     </>

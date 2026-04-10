@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useStore } from '../context/StoreContext'
 import { ShoppingBag, Star, TrendingUp } from 'lucide-react'
@@ -7,10 +8,13 @@ const ShopPage = () => {
   const { products, addToCart } = useStore()
   const [searchParams] = useSearchParams()
   const genderFilter = searchParams.get('gender')
+  const [activeCategory, setActiveCategory] = useState('All')
 
-  const filteredProducts = products.filter(p => 
-    !genderFilter || p.gender === genderFilter || p.gender === 'UNISEX'
-  )
+  const filteredProducts = products.filter(p => {
+    const matchesGender = !genderFilter || p.gender === genderFilter || p.gender === 'UNISEX'
+    const matchesCategory = activeCategory === 'All' || p.category.toLowerCase() === activeCategory.toLowerCase()
+    return matchesGender && matchesCategory
+  })
 
   return (
     <motion.div 
@@ -31,7 +35,7 @@ const ShopPage = () => {
 
       <div className="shop-container">
         {/* Trending Section */}
-        {!genderFilter && (
+        {!genderFilter && activeCategory === 'All' && (
           <div className="trending-section">
             <div className="section-header">
               <h2><TrendingUp size={24} /> TRENDING NOW</h2>
@@ -52,7 +56,13 @@ const ShopPage = () => {
           <div className="shop-count">{filteredProducts.length} Products Found</div>
           <div className="shop-filters">
             {['All', 'Running', 'Training', 'Lifestyle', 'Elite'].map(f => (
-              <button key={f} className={`filter-chip ${f === 'All' ? 'active' : ''}`}>{f}</button>
+              <button 
+                key={f} 
+                className={`filter-chip ${f === activeCategory ? 'active' : ''}`}
+                onClick={() => setActiveCategory(f)}
+              >
+                {f}
+              </button>
             ))}
           </div>
         </div>

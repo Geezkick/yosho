@@ -25,9 +25,17 @@ interface CartItem extends Product {
   quantity: number
 }
 
+interface User {
+  email: string
+  initial: string
+}
+
 interface StoreContextType {
   products: Product[]
   cart: CartItem[]
+  user: User | null
+  login: (email: string) => void
+  logout: () => void
   addToCart: (product: Product) => void
   removeFromCart: (productId: string) => void
   updateQuantity: (productId: string, delta: number) => void
@@ -46,21 +54,40 @@ const StoreContext = createContext<StoreContextType | undefined>(undefined)
 export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [products] = useState<Product[]>(API_PRODUCTS)
   const [cart, setCart] = useState<CartItem[]>([])
+  const [user, setUser] = useState<User | null>(null)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
-  // Load cart from local storage
+  // Load from local storage
   useEffect(() => {
-    const saved = localStorage.getItem('yosho_cart')
-    if (saved) setCart(JSON.parse(saved))
+    const savedCart = localStorage.getItem('yosho_cart')
+    if (savedCart) setCart(JSON.parse(savedCart))
+    
+    const savedUser = localStorage.getItem('yosho_user')
+    if (savedUser) setUser(JSON.parse(savedUser))
   }, [])
 
-  // Save cart to local storage
+  // Save to local storage
   useEffect(() => {
     localStorage.setItem('yosho_cart', JSON.stringify(cart))
   }, [cart])
+
+  useEffect(() => {
+    if (user) localStorage.setItem('yosho_user', JSON.stringify(user))
+    else localStorage.removeItem('yosho_user')
+  }, [user])
+
+  const login = (email: string) => {
+    const initial = email.charAt(0).toUpperCase()
+    setUser({ email, initial })
+    setIsLoginOpen(false)
+  }
+
+  const logout = () => {
+    setUser(null)
+  }
 
   const addToCart = (product: Product) => {
     setCart(prev => {
@@ -91,6 +118,9 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     <StoreContext.Provider value={{
       products,
       cart,
+      user,
+      login,
+      logout,
       addToCart,
       removeFromCart,
       updateQuantity,

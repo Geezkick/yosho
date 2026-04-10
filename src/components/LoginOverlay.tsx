@@ -4,10 +4,16 @@ import { useStore } from '../context/StoreContext'
 import { useState } from 'react'
 
 const LoginOverlay = () => {
-  const { isLoginOpen, setIsLoginOpen } = useStore()
+  const { isLoginOpen, setIsLoginOpen, login } = useStore()
   const [isSignup, setIsSignup] = useState(false)
+  const [email, setEmail] = useState('')
 
   if (!isLoginOpen) return null
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (email) login(email)
+  }
 
   return (
     <AnimatePresence>
@@ -35,28 +41,34 @@ const LoginOverlay = () => {
             <p>{isSignup ? 'Join the elite YoSho collective.' : 'Log in to your athlete profile.'}</p>
           </div>
 
-          <div className="login-form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <div className="input-group">
               <Mail className="input-icon" size={18} />
-              <input type="email" placeholder="Email Address" />
+              <input 
+                type="email" 
+                placeholder="Email Address" 
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="input-group">
               <Lock className="input-icon" size={18} />
               <input type="password" placeholder="Password" />
             </div>
             
-            <button className="btn-shop-now rainbow w-full">
+            <button type="submit" className="btn-shop-now rainbow w-full">
               {isSignup ? 'SIGN UP' : 'SIGN IN'}
             </button>
-          </div>
+          </form>
 
           <div className="login-divider">
             <span>OR CONTINUE WITH</span>
           </div>
 
           <div className="social-login">
-            <button className="social-btn glass"><Globe size={20} /> Google</button>
-            <button className="social-btn glass"><Globe size={20} /> Github</button>
+            <button className="social-btn glass" onClick={() => login('google@user.com')}><Globe size={20} /> Google</button>
+            <button className="social-btn glass" onClick={() => login('github@user.com')}><Globe size={20} /> Github</button>
           </div>
 
           <div className="login-footer">

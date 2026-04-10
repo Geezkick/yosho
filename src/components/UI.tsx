@@ -64,8 +64,15 @@ export const Magnetic = ({ children }: { children: React.ReactElement }) => {
 
 // ─── Navigation ───────────────────────────────────────────────────────────
 export function Navigation() {
-  const { cart, setIsCartOpen, setIsSearchOpen, setIsLoginOpen } = useStore()
+  const { cart, setIsCartOpen, setIsSearchOpen, setIsLoginOpen, user, logout } = useStore()
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0)
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
     <motion.nav
@@ -83,7 +90,7 @@ export function Navigation() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/shop?gender=MEN">Men</Link></li>
         <li><Link to="/shop?gender=WOMEN">Women</Link></li>
-        <li><Link to="/shop">Collections</Link></li>
+        <li><a onClick={() => scrollToSection('bento')}>Collections</a></li>
         <li><Link to="/about">About</Link></li>
       </ul>
 
@@ -91,9 +98,17 @@ export function Navigation() {
         <button className="nav-icon-btn" aria-label="Search" onClick={() => setIsSearchOpen(true)}>
           <Search size={20}/>
         </button>
-        <button className="nav-icon-btn" aria-label="Account" onClick={() => setIsLoginOpen(true)}>
-          <User size={20}/>
-        </button>
+        
+        {user ? (
+          <button className="nav-icon-btn user-logged-in" onClick={logout} title="Log Out">
+            <div className="user-avatar-mini">{user.initial}</div>
+          </button>
+        ) : (
+          <button className="nav-icon-btn" aria-label="Account" onClick={() => setIsLoginOpen(true)}>
+            <User size={20}/>
+          </button>
+        )}
+
         <button className="nav-icon-btn" aria-label="Cart" style={{position:'relative'}} onClick={() => setIsCartOpen(true)}>
           <ShoppingBag size={20}/>
           {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
@@ -268,7 +283,13 @@ export function Hero() {
                <button className="btn-shop-now rainbow" onClick={() => navigate('/shop')}>
                  SHOP NOW <ArrowRight size={14}/>
                </button>
-               <button className="btn-explore-tech outline">
+               <button 
+                 className="btn-explore-tech outline"
+                 onClick={() => {
+                   const el = document.getElementById('tech')
+                   if (el) el.scrollIntoView({ behavior: 'smooth' })
+                 }}
+               >
                  EXPLORE TECH <Play size={10} fill="white"/>
                </button>
              </div>
@@ -288,7 +309,7 @@ export function TechSpecs() {
     { title:'GRIPX OUTSOLE',     desc:'Unmatched traction on any surface.', Icon:GripIcon },
   ]
   return (
-    <div className="tech-bar">
+    <div className="tech-bar" id="tech">
       <div className="tech-bar-grid">
         {specs.map((s,i) => (
           <motion.div key={i} className="tech-item"

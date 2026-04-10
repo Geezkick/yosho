@@ -80,7 +80,15 @@ const CartDrawer = () => {
                   <span>Subtotal</span>
                   <span>${total.toFixed(2)}</span>
                 </div>
-                <button className="btn-shop-now" style={{ width: '100%', justifyContent: 'center' }}>
+                <button 
+                  className="btn-shop-now" 
+                  style={{ width: '100%', justifyContent: 'center' }}
+                  onClick={() => {
+                    alert('Order Placed Successfully! Generating your digital collective ID...')
+                    cart.forEach(item => removeFromCart(item.id))
+                    setIsCartOpen(false)
+                  }}
+                >
                   Checkout
                 </button>
               </div>
