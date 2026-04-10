@@ -67,13 +67,6 @@ export function Navigation() {
   const { cart, setIsCartOpen, setIsSearchOpen, setIsLoginOpen, user, logout } = useStore()
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0)
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   return (
     <motion.nav
       className="ys-nav"
@@ -90,7 +83,7 @@ export function Navigation() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/shop?gender=MEN">Men</Link></li>
         <li><Link to="/shop?gender=WOMEN">Women</Link></li>
-        <li><a onClick={() => scrollToSection('bento')}>Collections</a></li>
+        <li><Link to="/collections">Collections</Link></li>
         <li><Link to="/about">About</Link></li>
       </ul>
 

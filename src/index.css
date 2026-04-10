@@ -741,6 +741,63 @@ body::-webkit-scrollbar { display: none; }
   .about-hero-content h1 { font-size: 72px; }
 }
 
+/* ======== COLLECTIONS PAGE ======== */
+.collections-hero { padding: 180px 5% 100px; text-align: center; }
+.collections-hero h1 { font-family: var(--font-hero); font-size: 110px; line-height: 0.9; margin: 20px 0; }
+.collections-hero .eyebrow { font-weight: 800; letter-spacing: 0.3em; opacity: 0.4; }
+
+.collections-list { padding: 0 5% 150px; }
+.collection-row {
+  display: flex; align-items: center; gap: 80px; margin-bottom: 120px;
+}
+.collection-row:nth-child(even) { flex-direction: row-reverse; }
+.col-info { flex: 1; }
+.col-header { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; }
+.col-header h3 { font-family: var(--font-hero); font-size: 32px; letter-spacing: 0.05em; }
+.col-info h4 { font-size: 14px; font-weight: 800; letter-spacing: 0.2em; opacity: 0.4; margin-bottom: 20px; }
+.col-info p { font-size: 16px; opacity: 0.6; line-height: 1.8; margin-bottom: 40px; }
+
+.col-visual {
+  flex: 1.2; height: 500px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.col-img {
+  width: 90%; height: 90%; object-fit: contain; z-index: 2;
+  filter: drop-shadow(0 0 50px rgba(0,0,0,0.5));
+}
+.col-accent {
+  position: absolute; inset: 0; opacity: 0.1; filter: blur(100px);
+}
+
+.collections-cta { margin: 100px 5%; padding: 100px; text-align: center; }
+
+/* ======== ABOUT EXPANSION STYLES ======== */
+.about-labs { padding: 120px 5%; }
+.labs-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px;
+}
+.lab-item { padding: 50px; position: relative; }
+.lab-visual {
+  font-family: var(--font-hero); font-size: 80px; font-weight: 900; opacity: 0.05;
+  position: absolute; top: 20px; right: 30px;
+}
+.lab-item h4 { font-size: 20px; font-weight: 800; margin-bottom: 20px; color: #6d28d9; }
+.lab-item p { font-size: 14px; opacity: 0.6; line-height: 1.7; }
+
+.about-ambassadors { margin: 100px 5%; padding: 120px 80px; }
+.amb-text { max-width: 600px; }
+.amb-text h2 { font-family: var(--font-hero); font-size: 48px; margin-bottom: 30px; }
+.amb-text p { font-size: 18px; opacity: 0.7; line-height: 1.6; margin-bottom: 40px; }
+.amb-stats { display: flex; gap: 40px; }
+.stat { font-weight: 800; font-size: 12px; letter-spacing: 0.1em; opacity: 0.5; }
+.stat span { display: block; font-size: 32px; color: #fff; opacity: 1; margin-bottom: 5px; }
+
+@media (max-width: 1024px) {
+  .collection-row, .collection-row:nth-child(even) { flex-direction: column; gap: 40px; }
+  .labs-grid { grid-template-columns: 1fr; }
+  .collections-hero h1 { font-size: 64px; }
+}
+
 /* ======== CINEMATIC SCRUBBER (RETAINED) ======== */
 .scrubber-wrapper {
   background: #000;

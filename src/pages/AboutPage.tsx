@@ -118,6 +118,31 @@ const AboutPage = () => {
         </div>
       </section>
 
+      <section className="about-labs">
+        <div className="section-header">
+          <div className="eyebrow">THE LABS</div>
+          <h2>HYPER-PERFORMANCE ENGINEERING</h2>
+          <p>Where raw physics meets artistic intuition.</p>
+        </div>
+        <div className="labs-grid">
+          <div className="lab-item glass">
+            <div className="lab-visual">01</div>
+            <h4>3D Biometric Mapping</h4>
+            <p>We analyze 1.2M data points per foot to ensure the perfect kinetic lock across every size.</p>
+          </div>
+          <div className="lab-item glass">
+            <div className="lab-visual">02</div>
+            <h4>Nitrogen-Infusion</h4>
+            <p>Our Hyperbounce™ foam is infused with specialized nitrogen pods for 98% energy return.</p>
+          </div>
+          <div className="lab-item glass">
+            <div className="lab-visual">03</div>
+            <h4>Carbon-Weave Labs</h4>
+            <p>Proprietary carbon fiber layering that provides rigid propulsion without sacrificing natural flex.</p>
+          </div>
+        </div>
+      </section>
+
       <section className="about-roadmap">
         <div className="section-header center">
           <h2>UNSTOPPABLE ROADMAP</h2>
@@ -138,6 +163,19 @@ const AboutPage = () => {
             <span className="year">2030</span>
             <h4>Zero-Void</h4>
             <p>Achieving 100% closed-loop circularity. Every YoSho shoe is born to be reborn.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="about-ambassadors glass">
+        <div className="amb-grid">
+          <div className="amb-text">
+            <h2>GLOBAL ATHLETICS</h2>
+            <p>YoSho is the choice of elite competitors who refuse to accept common limits. From the streets of Nairobi to the tracks of Paris, we power the unstoppable.</p>
+            <div className="amb-stats">
+              <div className="stat"><span>12</span> WR Holders</div>
+              <div className="stat"><span>85</span> Pro Athletes</div>
+            </div>
           </div>
         </div>
       </section>

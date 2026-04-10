@@ -7,6 +7,7 @@ import SearchOverlay from './components/SearchOverlay'
 import HomePage from './pages/HomePage'
 import ShopPage from './pages/ShopPage'
 import AboutPage from './pages/AboutPage'
+import CollectionsPage from './pages/CollectionsPage'
 import Footer from './components/Footer'
 import LoginOverlay from './components/LoginOverlay'
 import './index.css'
@@ -36,6 +37,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/collections" element={<CollectionsPage />} />
           </Routes>
         </SiteLayout>
       </Router>

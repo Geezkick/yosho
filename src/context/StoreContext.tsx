@@ -18,7 +18,15 @@ const API_PRODUCTS: Product[] = [
   { id: '5', name: 'VELOCITY WAVE', price: 160, category: 'RUNNING', gender: 'WOMEN', image: '/assets/shoe1_nobg.png', description: 'Ultra-lightweight mesh for long distance agility.' },
   { id: '6', name: 'URBAN NOMAD', price: 135, category: 'LIFESTYLE', gender: 'UNISEX', image: '/assets/lifestyle_nobg.png', description: 'Versatile cushion for daily city exploration.' },
   { id: '7', name: 'CORE STRENGTH X', price: 155, category: 'TRAINING', gender: 'WOMEN', image: '/assets/training_nobg.png', description: 'Precision grip and ankle support for cross-training.' },
-  { id: '8', name: 'APEX RACER', price: 210, category: 'ELITE', gender: 'UNISEX', image: '/assets/elite_nobg.png', description: 'Record-shattering propulsion for the most demanding athletes.' }
+  { id: '8', name: 'APEX RACER', price: 210, category: 'ELITE', gender: 'UNISEX', image: '/assets/elite_nobg.png', description: 'Record-shattering propulsion for the most demanding athletes.' },
+  { id: '9', name: 'NEBULA PULSE', price: 190, category: 'RUNNING', gender: 'MEN', image: '/assets/shoe1_nobg.png', description: 'Advanced energy return for marathon performance.' },
+  { id: '10', name: 'TITAN CORE V3', price: 170, category: 'TRAINING', gender: 'WOMEN', image: '/assets/training_nobg.png', description: 'Reinforced heel stability for high-intensity lifting.' },
+  { id: '11', name: 'ZENITH STRIDE', price: 140, category: 'LIFESTYLE', gender: 'MEN', image: '/assets/lifestyle_nobg.png', description: 'Sleek, futuristic design for all-day urban comfort.' },
+  { id: '12', name: 'CARBON SHOCK', price: 275, category: 'ELITE', gender: 'WOMEN', image: '/assets/elite_nobg.png', description: 'Pro-grade sprint spikes with adaptive carbon response.' },
+  { id: '13', name: 'LUNAR GLIDE', price: 150, category: 'RUNNING', gender: 'UNISEX', image: '/assets/shoe1_nobg.png', description: 'Zero-gravity feel with our lightest foam technology.' },
+  { id: '14', name: 'OMEGA GRIP', price: 165, category: 'TRAINING', gender: 'MEN', image: '/assets/training_nobg.png', description: 'Extreme traction matrix for outdoor and agility work.' },
+  { id: '15', name: 'VOYAGER PRO', price: 130, category: 'LIFESTYLE', gender: 'WOMEN', image: '/assets/lifestyle_nobg.png', description: 'Breathable fly-knit upper for maximum casual agility.' },
+  { id: '16', name: 'HYPERION ZERO', price: 299, category: 'ELITE', gender: 'UNISEX', image: '/assets/elite_nobg.png', description: 'Limited edition: The absolute lightest shoe ever built.' }
 ]
 
 interface CartItem extends Product {

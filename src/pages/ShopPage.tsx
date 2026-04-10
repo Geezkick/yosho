@@ -24,12 +24,21 @@ const ShopPage = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >
-      <header className="shop-hero">
+      <header className={`shop-hero ${genderFilter ? genderFilter.toLowerCase() : 'all'}`}>
         <div className="shop-hero-content">
           <div className="shop-eyebrow">
-            {genderFilter ? `${genderFilter} COLLECTION` : 'PERFORMANCE REINVENTED'}
+            {genderFilter ? `${genderFilter} PERFORMANCE` : 'PERFORMANCE REINVENTED'}
           </div>
-          <h1>{genderFilter ? `THE ${genderFilter} EDIT` : 'SHOP THE FUTURE'}</h1>
+          <h1>
+            {genderFilter === 'MEN' && 'DOMINATE THE VOID'}
+            {genderFilter === 'WOMEN' && 'UNSTOPPABLE GRACE'}
+            {!genderFilter && 'SHOP THE FUTURE'}
+          </h1>
+          <p className="hero-subtext">
+            {genderFilter === 'MEN' && 'Engineered for maximum power output and relentless endurance.'}
+            {genderFilter === 'WOMEN' && 'Precision tuned for agility, stability, and high-performance speed.'}
+            {!genderFilter && 'The most advanced performance ecosystem ever built for human motion.'}
+          </p>
         </div>
       </header>
 
@@ -119,6 +128,27 @@ const ShopPage = () => {
             <div className="feature-card glass">
               <h4>Gravity-Anchor™</h4>
               <p>Proprietary traction matrix for high-speed maneuvers.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="shop-craft glass" style={{ padding: '100px', margin: '80px 0' }}>
+          <div className="craft-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+            <div className="craft-text">
+              <div className="eyebrow" style={{ opacity: 0.4, letterSpacing: '0.3em', fontWeight: 800 }}>THE CRAFT</div>
+              <h2 style={{ fontFamily: 'var(--font-hero)', fontSize: '48px', margin: '20px 0' }}>SURGICAL PRECISION. <br/>ATHLETIC SOUL.</h2>
+              <p style={{ opacity: 0.6, fontSize: '18px', lineHeight: 1.6 }}>
+                Every YoSho product undergoes 400 hours of stress testing in our high-altitude labs. 
+                From the molecular structure of our Hyperbounce™ foam to the aerodynamic curve 
+                of our carbon plates, we leave nothing to chance.
+              </p>
+              <div className="craft-stats" style={{ display: 'flex', gap: '40px', marginTop: '40px' }}>
+                <div className="stat"><span>-15%</span> Weight Reduction</div>
+                <div className="stat"><span>+98%</span> Energy Return</div>
+              </div>
+            </div>
+            <div className="craft-visual">
+               <img src="/assets/elite_nobg.png" alt="Engineering" style={{ width: '100%', filter: 'drop-shadow(0 0 40px rgba(109, 40, 217, 0.3))' }} />
             </div>
           </div>
         </section>
